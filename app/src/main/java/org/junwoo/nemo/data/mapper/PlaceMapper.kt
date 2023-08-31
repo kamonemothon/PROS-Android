@@ -12,6 +12,7 @@ fun PlaceDto.toPlace(): Place = Place(
     id,
     neighborhood,
     placeName,
+    phone,
     street = street,
     type = LocationType.valueOf(type),
     latitude = latitude.toDouble(),

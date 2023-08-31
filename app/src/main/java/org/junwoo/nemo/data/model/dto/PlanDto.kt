@@ -7,6 +7,7 @@ data class PlanDto(
     @SerializedName("fileURL")
     val thumbnail: String,
     val id: Int,
+    val planPlaceCount: Int,
     val public: Boolean,
     val title: String,
     val user: UserDto

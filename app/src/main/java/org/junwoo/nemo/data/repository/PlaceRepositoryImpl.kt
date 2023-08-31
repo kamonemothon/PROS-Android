@@ -1,29 +1,194 @@
 package org.junwoo.nemo.data.repository
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import org.junwoo.nemo.data.service.PlaceService
-import org.junwoo.nemo.data.mapper.toPlace
+import org.junwoo.nemo.domain.model.LocationType
 import org.junwoo.nemo.domain.model.Place
 import org.junwoo.nemo.domain.repository.PlaceRepository
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class PlaceRepositoryImpl @Inject constructor(
     private val placeService: PlaceService
-): PlaceRepository {
-    override fun getPlaceById(userId: Long): Flow<Place> = flow {
-        val place = placeService.getPlacesById(userId)
-        emit(place.toPlace())
-    }
+) : PlaceRepository {
+    override suspend fun getPlaceById(userId: Long): Place = dummyPlaces[0]
 
-    override fun searchPlace(
+    override suspend fun searchPlace(
         city: String,
         district: String,
         neighborhood: String,
         street: String,
         buildingNumber: String
-    ): Flow<List<Place>> = flow {
-        val placeList = placeService.searchPlace(city, district, neighborhood, street, buildingNumber)
-        emit(placeList.map { it.toPlace() })
-    }
+    ): List<Place> = dummyPlaces
 }
+
+val dummyPlaces = listOf(
+    Place(
+        id = 1,
+        city = "제주",
+        district = "제주시",
+        thumbnail = "https://firebasestorage.googleapis.com/v0/b/imgimg-6a797.appspot.com/o/placeData%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-08-31%20201754.png?alt=media&token=62073576-9781-49a3-aef4-bf7a53df8d81",
+        placeName = "우진해장국",
+        neighborhood = "삼도이동",
+        street = "서사로",
+        buildingNumber = "11",
+        phone = "064-757-3393",
+        type = LocationType.CAFE,
+        latitude = 126.52000128027187,
+        longitude = 33.51151689656457
+    ),
+    Place(
+        id = 2,
+        city = "제주",
+        district = "제주시",
+        thumbnail = "https://firebasestorage.googleapis.com/v0/b/imgimg-6a797.appspot.com/o/placeData%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-08-31%20201938.png?alt=media&token=ae7f6d18-ab8e-43ef-a8e1-0b40888a31bd",
+        neighborhood = "조현읍",
+        placeName = "함덕 해수욕장",
+        street = "조합해안로",
+        buildingNumber = "525",
+        phone = "064-757-3989",
+        type = LocationType.ETC,
+        latitude = 126.669238934013,
+        longitude = 33.5430615661113
+    ),
+    Place(
+        id = 3,
+        city = "제주",
+        district = "제주시",
+        thumbnail = "https://firebasestorage.googleapis.com/v0/b/imgimg-6a797.appspot.com/o/placeData%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-08-31%20201938.png?alt=media&token=ae7f6d18-ab8e-43ef-a8e1-0b40888a31bd",
+        neighborhood = "",
+        placeName = "이룸 갤러리",
+        street = "일주서로",
+        buildingNumber = "7827-1",
+        phone = "-",
+        type = LocationType.CULTURAL_FACILITY,
+        latitude = 126.669238934013,
+        longitude = 33.5430615661113,
+    ),
+    Place(
+        id = 4,
+        city = "제주",
+        district = "제주시",
+        thumbnail = "https://firebasestorage.googleapis.com/v0/b/imgimg-6a797.appspot.com/o/placeData%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-08-31%20201754.png?alt=media&token=62073576-9781-49a3-aef4-bf7a53df8d81",
+        neighborhood = "애월읍",
+        placeName = "랜디스도넛",
+        street = "애월로",
+        buildingNumber = "27-1",
+        phone = "064-799-0610",
+        type = LocationType.CAFE,
+        latitude = 126.31142823728557,
+        longitude = 33.46117162424217,
+    ),
+    Place(
+        id = 5,
+        city = "제주",
+        district = "제주시",
+        thumbnail = "https://firebasestorage.googleapis.com/v0/b/imgimg-6a797.appspot.com/o/placeData%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-08-31%20201754.png?alt=media&token=62073576-9781-49a3-aef4-bf7a53df8d81",
+        neighborhood = "우도면",
+        placeName = "안녕육지사람",
+        street = "우도해안길",
+        buildingNumber = "79",
+        phone = "064-799-0610",
+        type = LocationType.CAFE,
+        latitude = 126.95720423409409,
+        longitude = 33.515121670527996,
+    ),
+    Place(
+        id = 6,
+        city = "제주",
+        district = "제주시",
+        thumbnail = "https://firebasestorage.googleapis.com/v0/b/imgimg-6a797.appspot.com/o/placeData%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-08-31%20202129.png?alt=media&token=4baab13e-0720-44f1-bb24-c19025c2cad0",
+        neighborhood = "",
+        placeName = "숙성도",
+        street = "일주서로",
+        buildingNumber = "966",
+        phone = "-",
+        type = LocationType.RESTAURANT,
+        latitude = 126.48502796132595,
+        longitude = 33.48503198254993,
+    ),
+    Place(
+        id = 7,
+        city = "제주",
+        district = "서귀포시",
+        thumbnail = "https://firebasestorage.googleapis.com/v0/b/imgimg-6a797.appspot.com/o/placeData%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-08-31%20232920.png?alt=media&token=adf49cc8-efe8-4b38-9430-698d2e2e5c83",
+        neighborhood = "",
+        placeName = "롯데호텔 제주",
+        street = "중문관광로72번길",
+        buildingNumber = "966",
+        phone = "064-731-1000",
+        type = LocationType.HOSTEL,
+        latitude = 126.410600157083,
+        longitude = 33.2484564531332,
+    ),
+    Place(
+        id = 8,
+        city = "제주",
+        district = "서귀포시",
+        thumbnail = "https://firebasestorage.googleapis.com/v0/b/imgimg-6a797.appspot.com/o/placeData%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-08-31%20232637.png?alt=media&token=023d5447-596b-4da9-a28f-7de5339c2311",
+        neighborhood = "성산읍",
+        placeName = "성산일출봉",
+        street = "성산리",
+        buildingNumber = "1",
+        phone = "064-731-1000",
+        type = LocationType.PARK,
+        latitude = 126.940537521366,
+        longitude = 33.4591349705437,
+    ),
+    Place(
+        id = 9,
+        city = "제주",
+        district = "서귀포시",
+        thumbnail = "https://firebasestorage.googleapis.com/v0/b/imgimg-6a797.appspot.com/o/placeData%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-08-31%20202215.png?alt=media&token=13ee56ee-9e0c-4d1f-bea5-60d40491257f",
+        neighborhood = "성산읍",
+        placeName = "맛나식당",
+        street = "동류암로",
+        buildingNumber = "41",
+        phone = "064-782-4771",
+        type = LocationType.RESTAURANT,
+        latitude = 126.916078563797,
+        longitude = 33.4486008329529,
+    ),
+    Place(
+        id = 10,
+        city = "제주",
+        district = "서귀포시",
+        thumbnail = "https://firebasestorage.googleapis.com/v0/b/imgimg-6a797.appspot.com/o/placeData%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-08-31%20202258.png?alt=media&token=b1ae7a19-7c1d-4542-8fe7-a537e018a30c",
+        neighborhood = "성산읍",
+        placeName = "휘닉스 제주 유민 아르누보 뮤지엄",
+        street = "섭지코지로",
+        buildingNumber = "107",
+        phone = "064-731-7791",
+        type = LocationType.CULTURAL_FACILITY,
+        latitude = 126.932229840372,
+        longitude = 33.4291710326191,
+    ),
+    Place(
+        id = 11,
+        city = "제주",
+        district = "제주시",
+        thumbnail = "https://firebasestorage.googleapis.com/v0/b/imgimg-6a797.appspot.com/o/placeData%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-08-31%20202345.png?alt=media&token=b9078cea-e813-4445-b94a-c39ccb2bc01f",
+        neighborhood = "구좌읍",
+        placeName = "비자림",
+        street = "비자숲길",
+        buildingNumber = "55",
+        phone = "064-710-7912",
+        type = LocationType.PARK,
+        latitude = 126.80998754971,
+        longitude = 33.4904083697986,
+    ),
+    Place(
+        id = 12,
+        city = "제주",
+        district = "제주시",
+        thumbnail = "https://firebasestorage.googleapis.com/v0/b/imgimg-6a797.appspot.com/o/placeData%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-08-31%20202507.png?alt=media&token=5ff1f7a2-735a-4648-a8e8-4722be0360e6",
+        neighborhood = "",
+        placeName = "카페901",
+        street = "1100로",
+        buildingNumber = "2977-10",
+        phone = "0507-1315-2518",
+        type = LocationType.CAFE,
+        latitude = 126.48632557256,
+        longitude = 33.4529387960151,
+    ),
+)

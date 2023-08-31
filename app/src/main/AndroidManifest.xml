@@ -30,6 +30,9 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="kakaolink"
+                    android:scheme="kakao$e1772a2182c48fdcace662c0a504c437" />
             </intent-filter>
         </activity>
     </application>

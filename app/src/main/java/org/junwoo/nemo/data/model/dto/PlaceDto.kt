@@ -12,6 +12,7 @@ data class PlaceDto(
     val neighborhood: String,
     @SerializedName("place_name")
     val placeName: String,
+    val phone: String,
     val street: String,
     val type: String,
     @SerializedName("x")

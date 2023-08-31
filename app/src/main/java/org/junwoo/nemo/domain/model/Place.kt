@@ -8,6 +8,7 @@ data class Place(
     val id: Int,
     val neighborhood: String,
     val placeName: String,
+    val phone: String,
     val street: String,
     val type: LocationType,
     val latitude: Double,

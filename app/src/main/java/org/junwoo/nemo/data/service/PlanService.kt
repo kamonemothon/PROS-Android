@@ -14,7 +14,7 @@ interface PlanService {
     @GET("plan/getAll")
     suspend fun getAllPlans(): List<PlanDto>
 
-    @GET("plan/user/{userId}")
-    suspend fun getUserPlans(@Path("userId") userId: Long = 1): List<PlanDto>
+    @GET("plan/view/{planId}")
+    suspend fun getUserPlans(@Path("planId") userId: Long = 1): PlanDto
 
 }

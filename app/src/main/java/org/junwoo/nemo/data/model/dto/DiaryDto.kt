@@ -6,7 +6,7 @@ data class DiaryDto(
     val content: String,
     val createdDate: String,
     @SerializedName("fileURL")
-    val url: String,
+    val thumbnail: String,
     val id: Long,
     val modifiedDate: String,
     val place: PlaceDto,

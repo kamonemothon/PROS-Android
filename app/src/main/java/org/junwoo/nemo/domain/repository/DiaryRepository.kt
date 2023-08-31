@@ -1,13 +1,12 @@
 package org.junwoo.nemo.domain.repository
 
-import kotlinx.coroutines.flow.Flow
 import org.junwoo.nemo.domain.model.Diary
 import java.time.LocalDateTime
 
 interface DiaryRepository {
-    fun getDiaries(): Flow<List<Diary>>
+    suspend fun getDiaries(): List<Diary>
 
-    fun getDiariesByDateTime(dateTime: LocalDateTime): Flow<List<Diary>>
+    suspend fun getDiariesByDateTime(dateTime: LocalDateTime): List<Diary>
 
-    fun getDiariesByPlaceId(placeId: Long): Flow<List<Diary>>
+    suspend fun getDiariesByPlaceId(placeId: Long): List<Diary>
 }

@@ -25,7 +25,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import org.burnoutcrew.reorderable.ReorderableItem
 import org.burnoutcrew.reorderable.detectReorderAfterLongPress
 import org.burnoutcrew.reorderable.rememberReorderableLazyGridState
@@ -33,12 +36,14 @@ import org.burnoutcrew.reorderable.reorderable
 import org.junwoo.nemo.R
 import org.junwoo.nemo.ui.theme.NEPL_GRAY_30
 import org.junwoo.nemo.ui.theme.NEPL_GRAY_40
+import org.junwoo.nemo.ui.theme.NEPL_GRAY_60
+import org.junwoo.nemo.ui.theme.pretendardFamily
 
 @Composable
 fun ReorderableLocationComponent(modifier: Modifier = Modifier) {
     var data by remember {
-        mutableStateOf(mutableListOf<Int?>(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10).apply {
-            while (size == 11) {
+        mutableStateOf(mutableListOf<Pair<Int, String>?>(0 to "우진해장국", 1 to  "함덕 해수용장", 2 to "이룸 미술관", 3 to "랜디스 도넛", 4 to "안녕육지사람", 5 to "숙성도", 6 to "롯데호텔", 7 to "성산일출봉").apply {
+            while (count() <= 11) {
                 add(null)
             }
         })
@@ -160,12 +165,29 @@ fun ReorderableLocationComponent(modifier: Modifier = Modifier) {
                             .detectReorderAfterLongPress(state),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
+
                         Image(
-                            painter = painterResource(id = R.drawable.ic_cafe),
+                            painter = painterResource(id = when(items.first) {
+                                0, 5 -> R.drawable.ic_restaurant
+                                1 -> R.drawable.ic_location_etc
+                                2 -> R.drawable.ic_museum
+                                3, 4 -> R.drawable.ic_cafe
+                                6 -> R.drawable.ic_hostel
+                                7 -> R.drawable.ic_park
+                                else -> R.drawable.ic_cafe
+                            }),
                             contentDescription = null
                         )
 
-                        Text(text = "$items")
+                        Text(
+                            text = items.second,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            fontFamily = pretendardFamily,
+                            fontWeight = FontWeight.Medium,
+                            color = NEPL_GRAY_60,
+                            fontSize = 10.sp
+                        )
                     }
                 }
             }

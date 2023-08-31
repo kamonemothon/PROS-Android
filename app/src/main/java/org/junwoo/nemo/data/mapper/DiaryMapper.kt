@@ -6,7 +6,7 @@ import org.junwoo.nemo.domain.model.Diary
 fun DiaryDto.toDiary(): Diary = Diary(
     content,
     createdDate,
-    url,
+    thumbnail,
     id,
     modifiedDate,
     place = place.toPlace(),

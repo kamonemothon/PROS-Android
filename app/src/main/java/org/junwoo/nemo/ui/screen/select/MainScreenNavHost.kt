@@ -24,10 +24,10 @@ fun MainScreenNavHost(
             }
         }
         composable("createPlan") {
-            CreatePlanScreen()
+            CreatePlanScreen(onDetailClicked = onDetailClicked)
         }
         composable("planList") {
-            PlanListScreen()
+            PlanListScreen(onDetailClicked = onDetailClicked)
         }
     }
 }
